@@ -78,7 +78,7 @@ int main() {
             default:
                 cout << "Invalid choice. Try again.\n";
         }
-    }
+    } while (choice !=5);
   
     return 0;
 }
