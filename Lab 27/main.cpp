@@ -30,7 +30,7 @@ int main() {
         cout << "5. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
-        if (choice == 0 || choice == 2 || choice == 2) {
+        if (choice == 1 || choice == 2 || choice == 3) {
             cout << "Enter villager name: ";
             cin >> name;
         }
@@ -63,8 +63,22 @@ int main() {
                 }
                 break;
 
-    }
+            case 4:
+                cout << "\nAll villagers:\n";
+                for (auto &v : villagers)
+                    cout << v.first << " -> Friendship: " << get<0>(v.second)
+                         << ", Species: " << get<1>(v.second)
+                         << ", Catchphrase: " << get<2>(v.second) << endl;
+                break;
 
+            case 5:
+                cout << "Exiting program...\n";
+                break;
+
+            default:
+                cout << "Invalid choice. Try again.\n";
+        }
+    }
   
     return 0;
 }
