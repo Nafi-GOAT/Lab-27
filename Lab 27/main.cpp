@@ -12,8 +12,8 @@ using namespace std;
 int main() {
     // declarations
     map<string, tuple<int, string, string>> villagers = {
-    {"Audie", make_tuple(7, "Wolf", "Foxtrot!")};
-    {"Raymond", make_tuple(10, "Cat", "Nice fit!")};
+    {"Audie", make_tuple(7, "Wolf", "Foxtrot!")},
+    {"Raymond", make_tuple(10, "Cat", "Nice fit!")},
     {"Marshal", make_tuple(9, "Squirrel", "Sulky...")}
     };
                      
@@ -30,13 +30,39 @@ int main() {
         cout << "5. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
-    
-    cout << "Villagers and their details:\n";
-    for (auto &pair : villagers) {
-        cout << pair.first << " ["
-             << get<0>(pair.second) << ", "
-             << get<1>(pair.second) << ", "
-             << get<2>(pair.second) << "]\n";
+        if (choice == 0 || choice == 2 || choice == 2) {
+            cout << "Enter villager name: ";
+            cin >> name;
+        }
+        switch (choice) {
+                   case 1:
+                       if (villagers.find(name) != villagers.end()) {
+                           get<0>(villagers[name])++;
+                           cout << "Friendship increased for " << name << "!\n";
+                       } else {
+                           cout << "Villager not found.\n";
+                       }
+                       break;
+                
+            case 2:
+                if (villagers.find(name) != villagers.end()) {
+                    get<0>(villagers[name])--;
+                    cout << "Friendship decreased for " << name << "!\n";
+                } else {
+                    cout << "Villager not found.\n";
+                }
+                break;
+                
+            case 3:
+                if (villagers.find(name) != villagers.end()) {
+                    cout << name << " -> Friendship: " << get<0>(villagers[name])
+                         << ", Species: " << get<1>(villagers[name])
+                         << ", Catchphrase: " << get<2>(villagers[name]) << endl;
+                } else {
+                    cout << "Villager not found.\n";
+                }
+                break;
+
     }
 
   
