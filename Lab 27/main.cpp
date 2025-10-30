@@ -18,7 +18,8 @@ int main() {
     };
                      
     int choice;
-    string name;
+    string name, species, phrase;
+    int friendship;
      
                      
     do {
@@ -35,15 +36,14 @@ int main() {
             cin >> name;
         }
         switch (choice) {
-                   case 1:
-                       if (villagers.find(name) != villagers.end()) {
-                           get<0>(villagers[name])++;
-                           cout << "Friendship increased for " << name << "!\n";
-                       } else {
-                           cout << "Villager not found.\n";
-                       }
-                       break;
-                
+            case 1:
+                cout << "\nEnter villager's name: ";
+                cin >> name;
+                if (villagers.find(name) != villagers.end()) {
+                    cout << "Villager already exist!\n";
+                }
+                break;
+            }
             case 2:
                 if (villagers.find(name) != villagers.end()) {
                     get<0>(villagers[name])--;
