@@ -36,7 +36,7 @@ int main() {
             cin >> name;
         }
         switch (choice) {
-            case 1:
+            case 1: {
                 cout << "\nEnter villager's name: ";
                 cin >> name;
                 if (villagers.find(name) != villagers.end()) {
@@ -44,39 +44,59 @@ int main() {
                 }
                 break;
             }
-            case 2:
-                if (villagers.find(name) != villagers.end()) {
-                    get<0>(villagers[name])--;
+                cout << "Enter species: ";
+                cin >> species;
+                cout << "Enter catchphrase: ";
+                cin.ignore();
+                getline(cin, phrase);
+                cout << "Enter friendship level (1-10): ";
+                cin >> friendship;
+
+                villagers[name] = make_tuple(friendship, species, phrase);
+        cout << name << " added successfully!\n";
+        break;
+    }
+            case 2:{
+                cout << "\nEnter villager name to delete: ";
+                cin >> name;
+                if (villagers.find(name))
                     cout << "Friendship decreased for " << name << "!\n";
-                } else {
+                else
                     cout << "Villager not found.\n";
                 }
                 break;
+            }
                 
-            case 3:
-                if (villagers.find(name) != villagers.end()) {
-                    cout << name << " -> Friendship: " << get<0>(villagers[name])
-                         << ", Species: " << get<1>(villagers[name])
-                         << ", Catchphrase: " << get<2>(villagers[name]) << endl;
-                } else {
-                    cout << "Villager not found.\n";
+            case 3: {
+               cout << "\nEnter villager name: ";
+               cin >> name;
+               auto it = villagers.find(name);
+               if (it != villagers.end()) {
+               cout << "Current friendship level: " << get<0>(it->second) << endl;
+               cout << "Enter new friendship level (1–10): ";
+              cin >> friendship;
+               get<0>(it->second) = friendship;
+               cout << "Friendship updated for " << name << "!\n";
+                 } else {
+                   cout << "Villager not found.\n";
                 }
-                break;
+             break;
+             }
 
             case 4:
-                cout << "\nAll villagers:\n";
-                for (auto &v : villagers)
-                    cout << v.first << " -> Friendship: " << get<0>(v.second)
-                         << ", Species: " << get<1>(v.second)
-                         << ", Catchphrase: " << get<2>(v.second) << endl;
-                break;
+                cout << "\nEnter villager name: ";
+                cin >> name;
+    auto it = villagers.find(name);
+    if (it != villagers.end()) {
+        cout << "\n" << name << " -> Friendship: " << get<0>(it->second)
+             << ", Species: " << get<1>(it->second)
+             << ", Catchphrase: " << get<2>(it->second) << endl;
+    } else {
+        cout << "Villager not found.\n";
+    }
+    break;
+}
 
-            case 5:
-                cout << "Exiting program...\n";
-                break;
-
-            default:
-                cout << "Invalid choice. Try again.\n";
         }
     } while (choice !=5);
   
